@@ -139,7 +139,7 @@ function launchFireworks() {
   cvs.classList.add('show');
   for (let i = 0; i < 4; i++) setTimeout(burst, i * 180);
   fwTimer = setInterval(burst, 420);
-  stopTimer = setTimeout(endFW, 10000);
+  stopTimer = setTimeout(endFW, 4500);
   drawFW();
 }
 
@@ -193,7 +193,7 @@ function endFW() {
   cvs.style.transition = 'opacity 1.8s';
   cvs.style.opacity = '0';
   setTimeout(() => { cvs.classList.remove('show'); cvs.style.cssText = ''; }, 1900);
-  setTimeout(() => { document.getElementById('env-wrap').classList.add('show'); }, 900);
+  setTimeout(() => { document.getElementById('env-wrap').classList.add('show'); }, 500);
 }
 
 window.addEventListener('resize', () => {
