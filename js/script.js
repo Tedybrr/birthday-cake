@@ -202,3 +202,23 @@ window.addEventListener('resize', () => {
   cvs.width = window.innerWidth;
   cvs.height = window.innerHeight;
 });
+
+const envelope = document.getElementById('env-wrap');
+const letterOverlay = document.getElementById('letter-overlay');
+const letterClose = document.querySelector('.letter-close');
+
+envelope.addEventListener('click', openLetter);
+
+letterClose.addEventListener('click', closeLetter);
+
+letterOverlay.addEventListener('click', function (event) {
+  if (event.target === letterOverlay) {
+    closeLetter();
+  }
+});
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    closeLetter();
+  }
+});
