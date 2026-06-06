@@ -130,12 +130,22 @@ function extinguish(idx) {
 // Fireworks
 const cvs = document.getElementById('fw-canvas');
 const cx  = cvs.getContext('2d');
+function resizeFireworksCanvas() {
+  const pixelRatio = window.devicePixelRatio || 1;
+
+  cvs.width = window.innerWidth * pixelRatio;
+  cvs.height = window.innerHeight * pixelRatio;
+
+  cvs.style.width = `${window.innerWidth}px`;
+  cvs.style.height = `${window.innerHeight}px`;
+
+  cx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+}
 let fwParts = [];
 let fwTimer, stopTimer;
 
 function launchFireworks() {
-  cvs.width = window.innerWidth;
-  cvs.height = window.innerHeight;
+  resizeFireworksCanvas();
   cvs.classList.add('show');
   for (let i = 0; i < 4; i++) setTimeout(burst, i * 180);
   fwTimer = setInterval(burst, 420);
@@ -146,8 +156,8 @@ function launchFireworks() {
 const FW_HUES = [36, 45, 130, 55, 28, 160, 50];
 
 function burst() {
-  const x = cvs.width  * (.1 + Math.random() * .8);
-  const y = cvs.height * (.05 + Math.random() * .5);
+  const x = window.innerWidth * (0.1 + Math.random() * 0.8);
+  const y = window.innerHeight * (0.05 + Math.random() * 0.5);
   const hue = FW_HUES[Math.floor(Math.random() * FW_HUES.length)];
   const n = 70 + Math.floor(Math.random() * 50);
   for (let i = 0; i < n; i++) {
@@ -196,7 +206,4 @@ function endFW() {
   setTimeout(() => { document.getElementById('env-wrap').classList.add('show'); }, 500);
 }
 
-window.addEventListener('resize', () => {
-  cvs.width = window.innerWidth;
-  cvs.height = window.innerHeight;
-});
+window.addEventListener('resize', resizeFireworksCanvas);
