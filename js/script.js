@@ -1,4 +1,3 @@
-<script>
 // Particles
 const pEl = document.getElementById('particles');
 const pColors = ['#c47c1a','#e8a832','#f5c842','#3e7a54','#5a8a60','#f7edd8'];
@@ -203,4 +202,3 @@ window.addEventListener('resize', () => {
   cvs.width = window.innerWidth;
   cvs.height = window.innerHeight;
 });
-</script>
