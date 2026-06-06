@@ -162,7 +162,7 @@ function launchFireworks() {
   cvs.classList.add('show');
   for (let i = 0; i < 4; i++) setTimeout(burst, i * 180);
   fwTimer = setInterval(burst, 420);
-  stopTimer = setTimeout(endFW, 4500);
+  stopTimer = setTimeout(endFW, 2500);
   drawFW();
 }
 
