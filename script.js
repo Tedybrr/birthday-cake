@@ -2,6 +2,7 @@
 let candlesBlown = 0;
 const TOTAL = 3;
 let detecting = false;
+let fallbackEnabled = false;
 
 // ── Mic — iOS Safari compatible ──────────────────────────
 // Key rules for iOS Safari:
@@ -78,12 +79,24 @@ function detectBlow() {
 }
 
 function fallbackTap() {
+  if (fallbackEnabled) return;
+
+  fallbackEnabled = true;
+  detecting = false;
+  micBtn.classList.remove('active');
   micHint.textContent = '👆 tap each candle to blow it out';
-  document.querySelectorAll('.candle').forEach((c, i) => {
-    c.style.cursor = 'pointer';
-    const handler = () => { blowNext(); c.removeEventListener('click', handler); c.removeEventListener('touchend', handler); };
-    c.addEventListener('click', handler);
-    c.addEventListener('touchend', handler, { passive: true });
+
+  document.querySelectorAll('.candle').forEach((candle) => {
+    candle.style.cursor = 'pointer';
+
+    const handler = () => {
+      blowNext();
+      candle.removeEventListener('click', handler);
+      candle.removeEventListener('touchend', handler);
+    };
+
+    candle.addEventListener('click', handler);
+    candle.addEventListener('touchend', handler, { passive: true });
   });
 }
 
