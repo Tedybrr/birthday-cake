@@ -272,14 +272,23 @@ body::before {
 .env-line { height:1.5px; border-radius:1px; background:rgba(196,124,26,.25); }
 
 .notif {
-  position:absolute; top:-9px; right:-9px;
-  width:24px; height:24px; border-radius:50%;
-  background:#c43a1a; color:white;
-  font-size:12px; font-weight:700;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 2px 10px rgba(196,58,26,.5);
-  border:2px solid var(--bg0);
-  animation:notifBounce 1.4s ease-in-out infinite;
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #c43a1a;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(196, 58, 26, 0.5);
+  border: 2px solid var(--bg0);
+  animation: notifBounce 1.4s ease-in-out infinite;
 }
 @keyframes notifBounce {
   0%,100%{ transform:scale(1) rotate(0deg); }
