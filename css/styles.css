@@ -193,6 +193,8 @@ body::before {
   animation: fadeUp .9s .65s ease both; opacity:0; animation-fill-mode:forwards;
 }
 .mic-btn {
+  appearance: none;
+  font: inherit;
   width:56px; height:56px; border-radius:50%;
   background: linear-gradient(145deg,#3d2208,#2a1504);
   border: 1.5px solid rgba(196,124,26,.4);
