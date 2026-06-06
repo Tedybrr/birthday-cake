@@ -216,7 +216,7 @@ function endFW() {
   cvs.style.transition = 'opacity 1.8s';
   cvs.style.opacity = '0';
   setTimeout(() => { cvs.classList.remove('show'); cvs.style.cssText = ''; }, 1900);
-  setTimeout(() => { document.getElementById('env-wrap').classList.add('show'); }, 500);
+  setTimeout(() => { document.getElementById('env-wrap').classList.add('show'); }, 400);
 }
 
 window.addEventListener('resize', resizeFireworksCanvas);
