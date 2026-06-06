@@ -194,9 +194,7 @@ function endFW() {
 // Letter
 function openLetter()  { document.getElementById('letter-overlay').classList.add('show'); }
 function closeLetter() { document.getElementById('letter-overlay').classList.remove('show'); }
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('letter-overlay')) closeLetter();
-}
+
 
 window.addEventListener('resize', () => {
   cvs.width = window.innerWidth;
