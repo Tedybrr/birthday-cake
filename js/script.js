@@ -29,7 +29,7 @@ micBtn.addEventListener('touchend', function(e) {
   startMic();
 }, { passive: false });
 
-let audioCtx, analyser;
+let audioCtx, analyser, micStream;
 
 function startMic() {
   if (detecting) return;
@@ -50,8 +50,11 @@ function startMic() {
     }
     return navigator.mediaDevices.getUserMedia({ audio: true, video: false });
   }).then(stream => {
-    if (!stream) return;
-    analyser = audioCtx.createAnalyser();
+  if (!stream) return;
+
+  micStream = stream;
+
+  analyser = audioCtx.createAnalyser();
     analyser.fftSize = 512;
     analyser.smoothingTimeConstant = 0.6;
     audioCtx.createMediaStreamSource(stream).connect(analyser);
@@ -97,13 +100,28 @@ function fallbackTap() {
   });
 }
 
+function stopMic() {
+  detecting = false;
+  micBtn.classList.remove('active');
+
+  if (micStream) {
+    micStream.getTracks().forEach(track => track.stop());
+    micStream = null;
+  }
+
+  if (audioCtx) {
+    audioCtx.close();
+    audioCtx = null;
+  }
+}
+
 // Blow logic
 function blowNext() {
   if (candlesBlown >= TOTAL) return;
   const idx = ++candlesBlown;
   extinguish(idx);
   if (candlesBlown >= TOTAL) {
-    micBtn.classList.remove('active');
+    stopMic();
     micHint.textContent = '✨ wish made!';
     setTimeout(launchFireworks, 600);
   }
