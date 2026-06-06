@@ -4,11 +4,6 @@ const TOTAL = 3;
 let detecting = false;
 let fallbackEnabled = false;
 
-// ── Mic — iOS Safari compatible ──────────────────────────
-// Key rules for iOS Safari:
-// 1. AudioContext must be created synchronously inside a user gesture handler
-// 2. getUserMedia must be called after AudioContext creation
-// 3. No await before AudioContext creation
 const micBtn  = document.getElementById('micBtn');
 const micHint = document.getElementById('micHint');
 
@@ -62,7 +57,6 @@ function detectBlow() {
   function tick() {
     if (candlesBlown >= TOTAL) return;
     analyser.getByteFrequencyData(buf);
-    // Blowing creates energy in low-freq bins
     let sum = 0;
     for (let i = 1; i <= 40; i++) sum += buf[i];
     const avg = sum / 40;
