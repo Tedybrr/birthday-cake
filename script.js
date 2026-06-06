@@ -23,11 +23,10 @@ let detecting = false;
 const micBtn  = document.getElementById('micBtn');
 const micHint = document.getElementById('micHint');
 
-micBtn.addEventListener('click', startMic);
-micBtn.addEventListener('touchend', function(e) {
-  e.preventDefault(); // prevent ghost click on iOS
+micBtn.addEventListener('pointerup', function (event) {
+  event.preventDefault();
   startMic();
-}, { passive: false });
+});
 
 let audioCtx, analyser, micStream;
 
