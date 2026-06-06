@@ -38,11 +38,11 @@ function startMic() {
     }
     return navigator.mediaDevices.getUserMedia({ audio: true, video: false });
   }).then(stream => {
-  if (!stream) return;
+    if (!stream) return;
 
-  micStream = stream;
+    micStream = stream;
 
-  analyser = audioCtx.createAnalyser();
+    analyser = audioCtx.createAnalyser();
     analyser.fftSize = 512;
     analyser.smoothingTimeConstant = 0.6;
     audioCtx.createMediaStreamSource(stream).connect(analyser);
